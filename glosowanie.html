@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Głosowanie | Złote Franciszki</title>
 
-    <!-- Czcionki -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -16,11 +15,23 @@
 
 <div class="background"></div>
 
+<div class="stars">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
 <div class="container">
 
     <h1>ZŁOTE FRANCISZKI</h1>
 
-    <!-- Pasek postępu -->
     <div class="progress">
         <div class="progress-bar"></div>
     </div>
@@ -29,115 +40,18 @@
         Kategoria <span id="currentCategory">1</span> z <span id="totalCategories">3</span>
     </p>
 
-    <!-- Nazwa kategorii -->
-    <h2 id="categoryTitle">Najlepszy Film</h2>
+    <h2 id="categoryTitle">Ładowanie kategorii...</h2>
 
-    <!-- Miejsce na filmy -->
-    <div id="moviesContainer">
+    <div id="moviesContainer"></div>
 
-        <!-- Film 1 -->
-        <div class="movie-card">
-
-            <h3>Film 1</h3>
-
-            <iframe
-                src="https://www.youtube.com/watch?v=b_4s6zCOy9k"
-                title="Film 1"
-                allowfullscreen>
-            </iframe>
-
-            <label>
-                <input type="radio" name="vote" value="Film 1">
-                Głosuję na ten film
-            </label>
-
-        </div>
-
-        <!-- Film 2 -->
-        <div class="movie-card">
-
-            <h3>Film 2</h3>
-
-            <iframe
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                title="Film 2"
-                allowfullscreen>
-            </iframe>
-
-            <label>
-                <input type="radio" name="vote" value="Film 2">
-                Głosuję na ten film
-            </label>
-
-        </div>
-
-        <!-- Film 3 -->
-        <div class="movie-card">
-
-            <h3>Film 3</h3>
-
-            <iframe
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                title="Film 3"
-                allowfullscreen>
-            </iframe>
-
-            <label>
-                <input type="radio" name="vote" value="Film 3">
-                Głosuję na ten film
-            </label>
-
-        </div>
-
-        <!-- Film 4 -->
-        <div class="movie-card">
-
-            <h3>Film 4</h3>
-
-            <iframe
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                title="Film 4"
-                allowfullscreen>
-            </iframe>
-
-            <label>
-                <input type="radio" name="vote" value="Film 4">
-                Głosuję na ten film
-            </label>
-
-        </div>
-
-        <!-- Film 5 -->
-        <div class="movie-card">
-
-            <h3>Film 5</h3>
-
-            <iframe
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                title="Film 5"
-                allowfullscreen>
-            </iframe>
-
-            <label>
-                <input type="radio" name="vote" value="Film 5">
-                Głosuję na ten film
-            </label>
-
-        </div>
-
-    </div>
-
-    <!-- Przyciski -->
     <div class="navigation">
-
-        <button id="prevBtn">
+        <button id="prevBtn" disabled>
             ← Poprzednia
         </button>
 
         <button id="nextBtn">
             Następna →
         </button>
-
     </div>
 
 </div>
