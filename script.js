@@ -134,7 +134,7 @@ if (categoryTitle && moviesContainer && nextBtn) {
     };
 
     // 2. TUTAJ WKLEJ SWÓJ URL WYGENEROWANY W KROKU 2 Z GOOGLE APPS SCRIPT
-    const googleAppScriptUrl = "TUTAJ_WSTAW_SWÓJ_URL_Z_GOOGLE_APPS_SCRIPT";
+    const googleAppScriptUrl = "https://script.google.com/macros/s/AKfycbzcIgwQa5M6Sx7TYyb2T5sUgEaHXIaJNHqp80PVzaJIPJlnDlzRgY91DVLv2STUdWmHLQ/exec";
 
     // 3. Wysyłamy dane w tle za pomocą technologii Fetch API
     fetch(googleAppScriptUrl, {
