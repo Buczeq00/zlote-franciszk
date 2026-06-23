@@ -117,19 +117,42 @@ if (categoryTitle && moviesContainer && nextBtn) {
         }
     });
 
-    function showThankYou() {
-        // Czyścimy lokalne głosy, aby przy ewentualnym nowym wejściu móc głosować od nowa
+   function showThankYou() {
+    // POKAZUJEMY EKRAN ŁADOWANIA, ŻEBY UŻYTKOWNIK WIDZIAŁ, ŻE GŁOS SIĘ WYSYŁA
+    mainContainer.innerHTML = `
+        <div style="padding: 60px 20px; text-align: center; font-family: 'Poppins', sans-serif;">
+            <h1 style="color: gold; font-family: 'Cinzel', serif; font-size: 2.5rem; margin-bottom: 20px; text-shadow: 0 0 15px gold;">Rejestrowanie głosu...</h1>
+            <p style="font-size: 1.2rem; color: #fff;">Proszę czekać, zapisujemy Twoje wybory ✨</p>
+        </div>
+    `;
+
+    // 1. Mapujemy indeksy (0,1,2,3...) na realne nazwy filmów, żeby w arkuszu mieć jasne tytuły, a nie cyfry
+    const payload = {
+        film: categories[0].movies[votes[0]].name,    // Nazwa filmu z 1. kategorii
+        komedia: categories[1].movies[votes[1]].name, // Nazwa filmu z 2. kategorii
+        aktor: categories[2].movies[votes[2]].name     // Nazwa filmu z 3. kategorii
+    };
+
+    // 2. TUTAJ WKLEJ SWÓJ URL WYGENEROWANY W KROKU 2 Z GOOGLE APPS SCRIPT
+    const googleAppScriptUrl = "TUTAJ_WSTAW_SWÓJ_URL_Z_GOOGLE_APPS_SCRIPT";
+
+    // 3. Wysyłamy dane w tle za pomocą technologii Fetch API
+    fetch(googleAppScriptUrl, {
+        method: "POST",
+        mode: "no-cors", // Wymagane przy prostych skryptach Google Apps Script, zapobiega błędom CORS
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    })
+    .then(() => {
+        // Po udanym wysłaniu czyścimy pamięć podręczną i pokazujemy ostateczne podziękowanie
         localStorage.removeItem("votes");
 
-        // Podmieniamy zawartość kontenera głównego, zachowując tło i gwiazdy z body
         mainContainer.innerHTML = `
-            <div style="
-                padding: 60px 20px;
-                text-align: center;
-                font-family: 'Poppins', sans-serif;
-            ">
+            <div style="padding: 60px 20px; text-align: center; font-family: 'Poppins', sans-serif;">
                 <h1 style="color: gold; font-family: 'Cinzel', serif; font-size: 3rem; margin-bottom: 20px; text-shadow: 0 0 15px gold;">Dziękujemy!</h1>
-                <p style="font-size: 1.2rem; color: #fff; margin-bottom: 30px;">Twój głos został pomyślnie zarejestrowany. ✨</p>
+                <p style="font-size: 1.2rem; color: #fff; margin-bottom: 30px;">Twój głos został pomyślnie zarejestrowany w bazie danych. ✨</p>
                 <a href="index.html" style="
                     display: inline-block;
                     padding: 15px 35px;
@@ -146,7 +169,12 @@ if (categoryTitle && moviesContainer && nextBtn) {
                 </a>
             </div>
         `;
-    }
+    })
+    .catch(err => {
+        console.error("Błąd podczas wysyłania głosu:", err);
+        alert("Wystąpił problem z połączeniem. Spróbuj kliknąć zakończ ponownie.");
+    });
+}
 
     // Pierwsze uruchomienie przy wejściu na stronę
     renderCategory();
